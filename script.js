@@ -228,6 +228,15 @@ document.addEventListener('DOMContentLoaded', function() {
         contadorItens.classList.add('hidden');
     });
 
+    const limparCarrinho = () => {
+        itensNoCarrinho = [];
+        itensCarrinhoList.innerHTML = '';
+        totalCarrinho.textContent = 'Total: R$ 0.00';
+        contadorItens.textContent = '0';
+        contadorItens.classList.add('hidden');
+        addressInput.value = "";
+    }
+
     enviarPedidoButton.addEventListener('click', function() {
         // Verifica se o restaurante está aberto
         if (!checkRestaurantOpen()) {
@@ -262,9 +271,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var phone = "11940094503";
         var message = encodeURIComponent(mensagem);
         window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+        itensCarrinhoList.innerHTML = '';
+        limparCarrinho();
 
         
-        limparCarrinho();
+        
     });
 
 
